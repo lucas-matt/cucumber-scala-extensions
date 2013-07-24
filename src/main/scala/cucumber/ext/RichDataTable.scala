@@ -13,39 +13,39 @@ class RichDataTable(table:DataTable) {
 
   val delegate = table
 
-  def dup:RichDataTable = {
-    throw new UnsupportedOperationException()
+  def dup:DataTable = {
+    DataTable.create(delegate.raw())
   }
 
-  def transpose:RichDataTable = {
-    throw new UnsupportedOperationException()  }
-
-  def maps:Map[String, String] = {
-    throw new UnsupportedOperationException()
-  }
-
-  def rowsMap:Map[String, String] = {
-    throw new UnsupportedOperationException()
-  }
-
-  def raw:List[List[String]] = {
-    throw new UnsupportedOperationException()
-  }
-
-  def columnNames:List[String] = {
-    throw new UnsupportedOperationException()
-  }
-
-  def rows:Unit = {
-    throw new UnsupportedOperationException()
-  }
-
-  def eachCellsRow(fn: List => Any):List[Any] = {
-    throw new UnsupportedOperationException()
-  }
-
-  def accept(fn: List => Any):List[Any] = {
-    throw new UnsupportedOperationException()
-  }
+//  def transpose:RichDataTable = {
+//    throw new UnsupportedOperationException()  }
+//
+//  def maps:Map[String, String] = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def rowsMap:Map[String, String] = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def raw:List[List[String]] = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def columnNames:List[String] = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def rows:Unit = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def eachCellsRow(fn: List => Any):List[Any] = {
+//    throw new UnsupportedOperationException()
+//  }
+//
+//  def accept(fn: List => Any):List[Any] = {
+//    throw new UnsupportedOperationException()
+//  }
 
 }
