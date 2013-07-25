@@ -29,7 +29,10 @@
     <orderEntry type="library" name="Maven: org.scala-lang:scala-library:2.10.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.scalatest:scalatest_2.10:1.9.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.scala-lang:scala-actors:2.10.0" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.scala-lang:scala-reflect:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-reflect:2.10.0" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-eval_2.10:6.3.8" level="project" />
+    <orderEntry type="library" name="Maven: com.twitter:util-core_2.10:6.3.8" level="project" />
+    <orderEntry type="library" name="Maven: org.scala-lang:scala-compiler:2.10.0" level="project" />
   </component>
 </module>
 

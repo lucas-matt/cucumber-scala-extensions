@@ -1,3 +1,4 @@
+import com.twitter.util.Eval
 import cucumber.api.DataTable
 import cucumber.api.scala.{EN, ScalaDsl}
 import org.scalatest.matchers.ShouldMatchers
@@ -15,7 +16,7 @@ class RichDataTableSteps extends ScalaDsl with EN with ShouldMatchers {
 
   var input:DataTable = null
 
-  var actual:DataTable = null
+  var actual:Any = null
 
   Given("""^I have a data table 'mytable':$"""){ (in:DataTable) =>
     input = in
@@ -29,7 +30,16 @@ class RichDataTableSteps extends ScalaDsl with EN with ShouldMatchers {
     actual = input.transpose
   }
 
-  Then("""^I should get .*$"""){ (expected:DataTable) =>
+  When("""^I run `mytable.maps`$"""){ () =>
+    actual = input.maps
+  }
+
+  Then("""^I should get the resulting list of maps :$"""){ (code:String) =>
+    val expected = Eval[List[Map[String,String]]](code)
+    actual should be(expected)
+  }
+
+  Then("""^I should get .* table.*$"""){ (expected:DataTable) =>
     actual should be(expected)
   }
 

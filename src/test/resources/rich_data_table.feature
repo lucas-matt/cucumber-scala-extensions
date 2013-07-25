@@ -12,6 +12,7 @@ Scenario: dup
     | A | B |
     | 1 | 2 |
 
+
 Scenario: transpose
   Given I have a data table 'mytable':
     | a | 7 | 4 |
@@ -22,3 +23,16 @@ Scenario: transpose
     | 7 | 9 |
     | 4 | 2 |
 
+
+Scenario: maps
+  Given I have a data table 'mytable':
+    | a | b | sum |
+    | 2 | 3 |   5 |
+    | 7 | 9 |  16 |
+  When I run `mytable.maps`
+  Then I should get the resulting list of maps :
+  """
+    List(
+      Map("a" -> "2", "b" -> "3", "sum" ->  "5"),
+      Map("a" -> "7", "b" -> "9", "sum" -> "16"))
+  """

@@ -24,9 +24,10 @@ class RichDataTable(table:DataTable) {
     DataTable.create(transposed)
   }
 
-//  def maps:Map[String, String] = {
-//    throw new UnsupportedOperationException()
-//  }
+  def maps:List[Map[String, String]] = {
+    delegate.asMaps().map(_.toMap).toList
+  }
+
 //
 //  def rowsMap:Map[String, String] = {
 //    throw new UnsupportedOperationException()
