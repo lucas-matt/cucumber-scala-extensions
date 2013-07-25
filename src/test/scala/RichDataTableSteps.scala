@@ -25,6 +25,10 @@ class RichDataTableSteps extends ScalaDsl with EN with ShouldMatchers {
     actual = input.dup
   }
 
+  When("""^I run `mytable.transpose`$"""){ () =>
+    actual = input.transpose
+  }
+
   Then("""^I should get .*$"""){ (expected:DataTable) =>
     actual should be(expected)
   }

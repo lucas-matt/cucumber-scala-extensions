@@ -1,6 +1,8 @@
 package cucumber.ext
 
+import java.util.{Map ⇒ JMap, List ⇒ JList}
 import cucumber.api.DataTable
+import scala.collection.JavaConversions._
 
 /**
  * Created with IntelliJ IDEA.
@@ -17,9 +19,11 @@ class RichDataTable(table:DataTable) {
     DataTable.create(delegate.raw())
   }
 
-//  def transpose:RichDataTable = {
-//    throw new UnsupportedOperationException()  }
-//
+  def transpose:DataTable = {
+    val transposed:JList[JList[String]] = bufferAsJavaList(delegate.raw().transpose.map(bufferAsJavaList(_)))
+    DataTable.create(transposed)
+  }
+
 //  def maps:Map[String, String] = {
 //    throw new UnsupportedOperationException()
 //  }

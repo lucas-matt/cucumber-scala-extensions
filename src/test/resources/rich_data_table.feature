@@ -12,3 +12,13 @@ Scenario: dup
     | A | B |
     | 1 | 2 |
 
+Scenario: transpose
+  Given I have a data table 'mytable':
+    | a | 7 | 4 |
+    | b | 9 | 2 |
+  When I run `mytable.transpose`
+  Then I should get a transposed version of my data table, i.e.
+    | a | b |
+    | 7 | 9 |
+    | 4 | 2 |
+
