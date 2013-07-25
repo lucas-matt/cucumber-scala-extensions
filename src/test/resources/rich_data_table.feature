@@ -36,3 +36,26 @@ Scenario: maps
       Map("a" -> "2", "b" -> "3", "sum" ->  "5"),
       Map("a" -> "7", "b" -> "9", "sum" -> "16"))
   """
+
+# Converts this table into a Hash where the first column is
+# used as keys and the second column is used as values
+#
+#   | a | 2 |
+#   | b | 3 |
+#
+# Gets converted into the following:
+#
+#   {'a' => '2', 'b' => '3'}
+#
+# The table must be exactly two columns wide
+#
+Scenario: rows map
+  Given I have a data table 'mytable':
+    | a | 2 |
+    | b | 3 |
+  When I run `mytable.rowsMap`
+  Then I should get the resulting map :
+  """
+    Map("a" -> "2", "b" -> "3")
+  """
+

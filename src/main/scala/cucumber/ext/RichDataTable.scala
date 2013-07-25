@@ -28,10 +28,16 @@ class RichDataTable(table:DataTable) {
     delegate.asMaps().map(_.toMap).toList
   }
 
-//
-//  def rowsMap:Map[String, String] = {
-//    throw new UnsupportedOperationException()
-//  }
+  def rowsMap:Map[String, String] = {
+    val tuples= delegate.raw().map { l:JList[String] =>
+      l.toArray match {
+        case Array(k:String,v:String) => (k,v)
+        case  _ => throw new IllegalArgumentException("Can only use '#rowsMap' on DataTable with rows width = 2")
+      }
+    }
+    Map(tuples: _*)
+  }
+
 //
 //  def raw:List[List[String]] = {
 //    throw new UnsupportedOperationException()
