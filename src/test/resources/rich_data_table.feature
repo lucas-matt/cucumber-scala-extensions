@@ -57,3 +57,18 @@ Scenario: column names
     List("a", "b", "c")
   """
 
+Scenario: rows
+  Given I have a data table 'mytable':
+    | a | b | c |
+    | 1 | 2 | 3 |
+    | 4 | 5 | 6 |
+    | 7 | 8 | 9 |
+  When I run `mytable.rows`
+  Then I should get the resulting list :
+  """
+    List(
+      List("1", "2", "3"),
+      List("4", "5", "6"),
+      List("7", "8", "9"))
+  """
+

@@ -43,9 +43,9 @@ class RichDataTable(table:DataTable) {
     delegate.topCells().toList
   }
 
-//  def rows:Unit = {
-//    throw new UnsupportedOperationException()
-//  }
+  def rows:List[List[String]] = {
+    delegate.raw.tail.map(_.toList).toList
+  }
 //
 //  def eachCellsRow(fn: List => Any):List[Any] = {
 //    throw new UnsupportedOperationException()
