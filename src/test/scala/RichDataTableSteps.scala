@@ -43,8 +43,17 @@ class RichDataTableSteps extends ScalaDsl with EN with ShouldMatchers {
     actual = input.rowsMap
   }
 
+  When("""^I run `mytable.columnNames`$"""){ () =>
+    actual = input.columnNames
+  }
+
   Then("""^I should get the resulting map :$"""){ (code:String) =>
     val expected = Eval[Map[String,String]](code)
+    actual should be (expected)
+  }
+
+  Then("""^I should get the resulting list :$"""){ (code:String) =>
+    val expected = Eval[List[String]](code)
     actual should be (expected)
   }
 

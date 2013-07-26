@@ -38,15 +38,11 @@ class RichDataTable(table:DataTable) {
     Map(tuples: _*)
   }
 
-//
-//  def raw:List[List[String]] = {
-//    throw new UnsupportedOperationException()
-//  }
-//
-//  def columnNames:List[String] = {
-//    throw new UnsupportedOperationException()
-//  }
-//
+
+  def columnNames:List[String] = {
+    delegate.topCells().toList
+  }
+
 //  def rows:Unit = {
 //    throw new UnsupportedOperationException()
 //  }
