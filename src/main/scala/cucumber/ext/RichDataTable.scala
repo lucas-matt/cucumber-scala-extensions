@@ -46,6 +46,11 @@ class RichDataTable(table:DataTable) {
   def rows:List[List[String]] = {
     delegate.raw.tail.map(_.toList).toList
   }
+
+  def forEachRow(fn: List[String] => Unit): Unit = {
+    rows.foreach(fn)
+  }
+
 //
 //  def eachCellsRow(fn: List => Any):List[Any] = {
 //    throw new UnsupportedOperationException()

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>cucumber-scala-extensions</groupId>
+    <groupId>com.zazaq</groupId>
     <artifactId>cucumber-scala-extensions_2.10</artifactId>
     <packaging>jar</packaging>
     <description>cucumber-scala-extensions</description>
@@ -10,6 +10,80 @@
     <organization>
         <name>cucumber-scala-extensions</name>
     </organization>
+    <properties>
+      <github.global.server>github</github.global.server>
+    </properties>
+    <build>
+      <sourceDirectory>src/main/scala</sourceDirectory>
+      <testSourceDirectory>src/test/scala</testSourceDirectory>
+      <plugins>
+        <plugin>
+          <groupId>org.scala-tools</groupId>
+          <artifactId>maven-scala-plugin</artifactId>
+          <executions>
+            <execution>
+              <id>regular-source-compilation</id>
+              <goals>
+                <goal>add-source</goal>
+                <goal>compile</goal>
+                <goal>testCompile</goal>
+              </goals>
+            </execution>
+          </executions>
+        </plugin>
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.7</version>
+          <configuration>
+            <altDeploymentRepository>internal.repo::default::file://${project.build.directory}/repository</altDeploymentRepository>
+          </configuration>
+        </plugin>
+        <plugin>
+          <groupId>com.github.github</groupId>
+          <artifactId>site-maven-plugin</artifactId>
+          <version>0.8</version>
+          <configuration>
+            <!-- git commit message -->
+            <message>Maven artifacts for ${project.groupId} -
+            ${project.artifactId} -  ${project.version}</message> 
+            <!-- disable webpage processing -->
+            <noJekyll>true</noJekyll>                       
+            <!-- matches distribution management repository url above -->
+            <outputDirectory>${project.build.directory}/repository</outputDirectory>
+            <!-- remote branch name -->
+            <branch>refs/heads/master</branch>                   
+            <includes><include>**/*</include></includes>
+            <!-- github repo name -->
+            <repositoryName>repository</repositoryName>    
+            <!-- github username  -->
+            <repositoryOwner>lucas1000001</repositoryOwner>   
+          </configuration>
+          <executions>
+            <!-- run site-maven-plugin's 'site' target as part of the build's normal 'deploy' phase -->
+            <execution>
+              <goals>
+                <goal>site</goal>
+              </goals>
+              <phase>deploy</phase>
+            </execution>
+          </executions>
+        </plugin>
+      </plugins>
+    </build>
+    <distributionManagement>
+      <repository>
+        <id>github</id>
+        <name>GitHub Repository</name>
+        <url>https://raw.github.com/lucas1000001/repository</url>
+      </repository>
+    </distributionManagement>
+    <pluginRepositories>
+      <pluginRepository>
+        <id>scala-tools.org</id>
+        <name>Scala-tools Maven2 Repository</name>
+        <url>http://scala-tools.org/repo-releases</url>
+      </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
             <groupId>info.cukes</groupId>
@@ -42,6 +116,11 @@
         <repository>
             <id>maven-twitter</id>
             <url>http://maven.twttr.com/</url>
+        </repository>
+        <repository>
+          <id>scala-tools.org</id>
+          <name>Scala-tools Maven2 Repository</name>
+          <url>http://scala-tools.org/repo-releases</url>
         </repository>
     </repositories>
 </project>
