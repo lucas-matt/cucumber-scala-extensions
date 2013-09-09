@@ -1,6 +1,7 @@
 package cucumber.ext
 
 import cucumber.api.DataTable
+import cucumber.ext.table.RichDataTable
 
 /**
  * Created with IntelliJ IDEA.
